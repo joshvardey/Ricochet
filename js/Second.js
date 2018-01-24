@@ -3,7 +3,7 @@ function Second(x, y, width, height) {
   this.y = y;
   this.width = width;
   this.height = height;
-  this.x_speed = 20;
+  this.x_speed = 10;
   this.y_speed = 0;
 }
 

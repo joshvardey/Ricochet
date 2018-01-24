@@ -25,7 +25,13 @@ function updateCanvas() {
   g.p2SecondControls();
   g.p1PlayerControls();
   g.p2PlayerControls();
-  g.checkAllCollisions();
+  if (g.player.player1.moon !== null) {
+    g.checkAllCollisions1();
+  }
+  if (g.player.player2.moon !== null) {
+    g.checkAllCollisions2();
+  }
+  g.checkIfGameOver();
 
   // this is always last
   requestAnimationFrame(updateCanvas);

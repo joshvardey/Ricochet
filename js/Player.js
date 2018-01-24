@@ -1,22 +1,22 @@
-function Player(x, y, width, height) {
+function Player(x, y, width, height, playerImage) {
   this.x = x;
   this.y = y;
   this.width = width;
   this.height = height;
   this.x_speed = 0;
   this.y_speed = 10;
-  this.moonBullets = [];
+  this.moon = null;
   this.health = 10;
+  this.image = playerImage;
 }
 
 Player.prototype.draw = function() {
-  ctx.fillStyle = "black";
-  ctx.fillRect(this.x, this.y, this.width, this.height);
-  if (this.moonBullets) {
-    for (let i = 0; i < this.moonBullets.length; i++) {
-      this.moonBullets[i].draw();
-      this.moonBullets[i].move();
-    }
+  // ctx.fillStyle = "black";
+  // ctx.fillRect(this.x, this.y, this.width, this.height);
+  ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+  if (this.moon) {
+    this.moon.move();
+    this.moon.draw();
   }
 };
 
@@ -31,9 +31,20 @@ Player.prototype.move = function(direction) {
   }
 };
 
-Player.prototype.shoot = function() {
+Player.prototype.shoot = function(target) {
+  if (this.moon) return;
   var moonPosition = this.midpoint();
-  this.moonBullets.push(new Moon(moonPosition.x, moonPosition.y));
+  var angle = Math.atan2(
+    target.y + target.height / 2 - moonPosition.y,
+    target.x + target.width / 2 - moonPosition.x
+  );
+
+  this.moon = new Moon(
+    moonPosition.x,
+    moonPosition.y,
+    Math.cos(angle),
+    Math.sin(angle)
+  );
 };
 
 Player.prototype.midpoint = function() {
@@ -42,3 +53,14 @@ Player.prototype.midpoint = function() {
     y: this.y + this.height / 2
   };
 };
+
+Player.prototype.decreaseHealth = function(e) {
+  this.health -= e;
+};
+
+// for (let i = 0; i < this.moonBullets.length; i++) {
+//   this.moonBullets[i].draw();
+//   this.moonBullets[i].move();
+// }
+
+// this.moonBullets.push(new Moon(moonPosition.x, moonPosition.y));

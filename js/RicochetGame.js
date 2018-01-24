@@ -1,12 +1,16 @@
 function RicochetGame() {
+  var victor = new Image();
+  victor.src = "./images/VictorGAME.png";
+  var pierre = new Image();
+  pierre.src = "./images/PierreGAME.png";
   this.player = {
-    player1: new Player(50, 250, 10, 100),
-    player2: new Player(1150, 250, 10, 100)
+    player1: new Player(50, 250, 150, 300, pierre),
+    player2: new Player(1000, 250, 200, 300, victor)
   };
 
   this.second = {
-    second1: new Second(550, 50, 100, 10),
-    second2: new Second(550, 550, 100, 10)
+    second1: new Second(550, 50, 300, 10),
+    second2: new Second(550, 550, 300, 10)
   };
 }
 
@@ -31,7 +35,7 @@ RicochetGame.prototype.p1PlayerControls = function() {
   } else if (k.isPressed(P1_DOWN)) {
     this.player.player1.move(1);
   } else if (k.isPressed(P1_SHOOT)) {
-    this.player.player1.shoot();
+    this.player.player1.shoot(this.second.second1);
   }
 };
 
@@ -49,34 +53,54 @@ RicochetGame.prototype.p2PlayerControls = function() {
   } else if (k.isPressed(P2_DOWN)) {
     this.player.player2.move(1);
   } else if (k.isPressed(P2_SHOOT)) {
-    this.player.player2.shoot();
+    this.player.player2.shoot(this.second.second2);
   }
 };
 
-RicochetGame.prototype.pointsCounter = function() {};
-
-RicochetGame.prototype.handleCollisions = function() {};
-
-RicochetGame.prototype.checkAllCollisions = function() {
+RicochetGame.prototype.checkAllCollisions1 = function() {
   var p1 = g.player.player1;
-  var p2 = g.player.player2;
   var s1 = g.second.second1;
+  var p2 = g.player.player2;
   var s2 = g.second.second2;
-  if (p1.moonBullet[i].isColliding(s1)) {
-    p1.moonBullet[i].collideWithSecond(s1);
-  } else if (p1.moonBullet[i].isColliding(s2)) {
-    p1.moonBullet[i].collideWithSecond(s2);
-  } else if (p1.moonBullet[i].isColliding(p1)) {
-    p1.moonBullet[i].collideWithPlayer(p1);
-  } else if (p1.moonBullet[i].isColliding(p2)) {
-    p1.moonBullet[i].collideWithPlayer(p2);
-  } else if (p2.moonBullet[i].isColliding(s1)) {
-    p2.moonBullet[i].collideWithSecond(s1);
-  } else if (p2.moonBullet[i].isColliding(s2)) {
-    p2.moonBullet[i].collideWithSecond(s2);
-  } else if (p2.moonBullet[i].isColliding(p1)) {
-    p2.moonBullet[i].collideWithPlayer(p1);
-  } else if (p2.moonBullet[i].isColliding(p2)) {
-    p2.moonBullet[i].collideWithPlayer(p2);
+  if (p1.moon.isColliding(s1)) {
+    p1.moon.collideWithSecond(s1);
+  } else if (p1.moon.isColliding(s2)) {
+    p1.moon.collideWithSecond(s2);
+  } else if (p1.moon.isColliding(p2)) {
+    p1.moon.collideWithPlayer(p2, p1.moon);
+    p1.moon = null;
+    // } else if (p1.moon.isColliding(p1)) {
+    //   p1.moon.collideWithPlayer(p1, p1.moon);
+    //   p1.moon = null;
+  } else if (p1.moon.offScreen()) {
+    p1.moon = null;
+  }
+};
+
+RicochetGame.prototype.checkAllCollisions2 = function() {
+  var p1 = g.player.player1;
+  var s1 = g.second.second1;
+  var p2 = g.player.player2;
+  var s2 = g.second.second2;
+  if (p2.moon.isColliding(s1)) {
+    p2.moon.collideWithSecond(s1);
+  } else if (p2.moon.isColliding(s2)) {
+    p2.moon.collideWithSecond(s2);
+  } else if (p2.moon.isColliding(p1)) {
+    p2.moon.collideWithPlayer(p1, p2.moon);
+    p2.moon = null;
+    // } else if (p2.moon.isColliding(p2)) {
+    //   p2.moon.collideWithPlayer(p2, p2.moon);
+    //   p2.moon = null;
+  } else if (p2.moon.offScreen()) {
+    p2.moon = null;
+  }
+};
+
+RicochetGame.prototype.checkIfGameOver = function() {
+  if (g.player.player1.health <= 0) {
+    console.log("You have changed Victor's fate!");
+  } else if (g.player.player2.health <= 0) {
+    console.log("Pierre Bonaparte takes Victor down!");
   }
 };

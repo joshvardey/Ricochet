@@ -1,9 +1,21 @@
-#game-board{
+#game-board {
   display: flex;
-  border: red 3px solid;
   justify-content: center;
 }
 
 #canvas {
-  border: black 1px solid;
+  border: black 2px solid;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -600px;
+  margin-top: -300px;
+}
+
+#title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -600px;
+  margin-top: -300px;
 }

@@ -1,15 +1,20 @@
-function Moon(x, y) {
+function Moon(x, y, x_speed, y_speed) {
   this.x = x;
   this.y = y;
-  this.x_speed = 3;
-  this.y_speed = 3;
-  this.width = 10;
-  this.height = 10;
+  this.x_speed = x_speed * 3;
+  this.y_speed = y_speed * 3;
+  this.width = 30;
+  this.height = 30;
+  this.image = moonImage;
 }
 
+var moonImage = new Image();
+moonImage.src = "./images/creepymoon.png";
+
 Moon.prototype.draw = function() {
-  ctx.fillStyle = "black";
-  ctx.fillRect(this.x, this.y, this.width, this.height);
+  // ctx.fillStyle = "black";
+  // ctx.fillRect(this.x, this.y, this.width, this.height);
+  ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
 };
 
 Moon.prototype.move = function() {
@@ -31,19 +36,15 @@ Moon.prototype.isColliding = function(object) {
 
 Moon.prototype.collideWithSecond = function(second) {
   this.y_speed = this.y_speed * -1;
-  this.x_speed += second.x_speed / 2;
+  this.x_speed += Math.sign(this.x_speed) * Math.abs(second.x_speed) / 2;
   this.y += this.y_speed;
 };
 
-Moon.prototype.collideWithPlayer = function(player) {
-  //reset moon ?? pop??
-  this.player.health = this.player.health - 5;
+Moon.prototype.collideWithPlayer = function(player, moon) {
+  player.decreaseHealth(2);
+  console.log(player);
 };
 
-Moon.prototype.offScreen = function() {
-  if (this.y < 0) {
-    g.player.player1.health = g.player.player1.health - 2;
-  } else if (this.y > 600) {
-    g.player.player2.health = g.player.player2.health - 2;
-  }
+Moon.prototype.offScreen = function(moon) {
+  return this.y < 0 || this.y > 600;
 };
