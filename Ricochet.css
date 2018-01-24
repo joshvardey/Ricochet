@@ -1,0 +1,9 @@
+#game-board{
+  display: flex;
+  border: red 3px solid;
+  justify-content: center;
+}
+
+#canvas {
+  border: black 1px solid;
+}
