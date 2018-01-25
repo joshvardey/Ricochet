@@ -1,3 +1,18 @@
+$(document).ready(function() {});
+
+function drawScore(p1, p2) {
+  $("#pierre-score").text("Pierre health: " + p1);
+  $("#victor-score").text("Victor health: " + p2);
+}
+
+function gameOver(winner) {
+  if (winner === "victor") {
+    console.log("victor");
+  } else if (winner === "pierre") {
+    console.log("pierre");
+  }
+}
+
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var g;
@@ -7,13 +22,13 @@ window.onload = function() {
   document.getElementById("start-button").onclick = function() {
     startGame();
   };
-
-  function startGame() {
-    g = new RicochetGame();
-
-    updateCanvas();
-  }
 };
+
+function startGame() {
+  g = new RicochetGame();
+
+  updateCanvas();
+}
 
 // this is where animation happens
 function updateCanvas() {
@@ -31,7 +46,8 @@ function updateCanvas() {
   if (g.player.player2.moon !== null) {
     g.checkAllCollisions2();
   }
-  g.checkIfGameOver();
+  drawScore(g.player.player1.health, g.player.player2.health);
+  g.checkIfGameOver(g.player.player1.health, g.player.player2.health);
 
   // this is always last
   requestAnimationFrame(updateCanvas);

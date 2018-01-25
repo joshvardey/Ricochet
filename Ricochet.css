@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "VictorianParlor";
+  src: url("./images/VictorianParlor.otf");
+}
+
 #game-board {
   display: flex;
   justify-content: center;
@@ -5,17 +10,48 @@
 
 #canvas {
   border: black 2px solid;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-left: -600px;
-  margin-top: -300px;
 }
 
-#title {
+#startpic {
+  width: 1200px;
+  height: 600px;
+  background-image: url("./images/RicochetTitle.png");
+}
+
+#score-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 100%;
+  height: 200px;
+  justify-content: space-around;
+}
+
+#pierre-score {
+  border: 1px, black, solid;
+  font-family: "VictorianParlor";
+  font-size: 40px;
+}
+
+#victor-score {
+  border: 1px, black, solid;
+  font-family: "VictorianParlor";
+  font-size: 40px;
+}
+
+#start-button {
+  font-family: "VictorianParlor";
+  font-size: 50px;
+  background-image: url("./images/sigilbuttonsmall.png");
+  width: 100px;
+  height: 80px;
+}
+
+/* #title {
   position: absolute;
   top: 50%;
   left: 50%;
   margin-left: -600px;
   margin-top: -300px;
-}
+} */

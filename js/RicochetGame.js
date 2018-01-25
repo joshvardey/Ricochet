@@ -7,10 +7,13 @@ function RicochetGame() {
     player1: new Player(50, 250, 150, 300, pierre),
     player2: new Player(1000, 250, 200, 300, victor)
   };
-
+  var second1 = new Image();
+  second1.src = "./images/Second1.png";
+  var second2 = new Image();
+  second2.src = "./images/Second2.png";
   this.second = {
-    second1: new Second(550, 50, 300, 10),
-    second2: new Second(550, 550, 300, 10)
+    second1: new Second(550, 30, 300, 100, second1),
+    second2: new Second(550, 470, 300, 100, second2)
   };
 }
 
@@ -97,10 +100,10 @@ RicochetGame.prototype.checkAllCollisions2 = function() {
   }
 };
 
-RicochetGame.prototype.checkIfGameOver = function() {
-  if (g.player.player1.health <= 0) {
-    console.log("You have changed Victor's fate!");
-  } else if (g.player.player2.health <= 0) {
-    console.log("Pierre Bonaparte takes Victor down!");
+RicochetGame.prototype.checkIfGameOver = function(p1Health, p2Health) {
+  if (p1Health <= 0) {
+    gameOver("victor");
+  } else if (p2Health <= 0) {
+    gameOver("pierre");
   }
 };

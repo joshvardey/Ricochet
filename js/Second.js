@@ -1,15 +1,17 @@
-function Second(x, y, width, height) {
+function Second(x, y, width, height, secondImage) {
   this.x = x;
   this.y = y;
   this.width = width;
   this.height = height;
   this.x_speed = 10;
   this.y_speed = 0;
+  this.image = secondImage;
 }
 
 Second.prototype.draw = function() {
-  ctx.fillStyle = "black";
-  ctx.fillRect(this.x, this.y, this.width, this.height);
+  // ctx.fillStyle = "black";
+  // ctx.fillRect(this.x, this.y, this.width, this.height);
+  ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
 };
 
 Second.prototype.move = function(direction) {
