@@ -14,17 +14,22 @@
 
 <body>
   <div id="score-container">
+    <span style="padding-right:3px; padding-top: 3px; display:inline-block;">
+      <img class="phealth" src="images/pierreHealth.png"></img>
+    </span>
     <div id="pierre-score"></div>
     <button id="start-button" type="button" class="btn btn-outline-dark"></button>
     <div id="victor-score"></div>
+    <span style="padding-right:3px; padding-top: 3px; display:inline-block;">
+      <img class="vhealth" src="images/VictorHealth.png"></img>
+    </span>
   </div>
   <div id="game-board">
     <div id="startpic" class="toggle1"></div>
     <canvas id="canvas" class="toggle2" width="1200" height="600"></canvas>
+    <div id="victor"></div>
+    <div id="pierre"></div>
   </div>
-
-
-
 
   <script src="js/RicochetGame.js"></script>
   <script src="js/keyboardHandler.js"></script>

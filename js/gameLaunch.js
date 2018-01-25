@@ -1,4 +1,12 @@
-$(document).ready(function() {});
+$(document).ready(function() {
+  $("#start-button").click(function() {
+    $("#canvas").show();
+    $("#startpic").hide();
+    $("#victor").hide();
+    $("#pierre").hide();
+    startGame();
+  });
+});
 
 function drawScore(p1, p2) {
   $("#pierre-score").text("Pierre health: " + p1);
@@ -7,9 +15,11 @@ function drawScore(p1, p2) {
 
 function gameOver(winner) {
   if (winner === "victor") {
-    console.log("victor");
+    $("#victor").show();
+    $("#canvas").hide();
   } else if (winner === "pierre") {
-    console.log("pierre");
+    $("#pierre").show();
+    $("#canvas").hide();
   }
 }
 
@@ -17,12 +27,6 @@ var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var g;
 var k = new KeyboardHandler();
-
-window.onload = function() {
-  document.getElementById("start-button").onclick = function() {
-    startGame();
-  };
-};
 
 function startGame() {
   g = new RicochetGame();

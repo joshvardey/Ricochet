@@ -10,12 +10,27 @@
 
 #canvas {
   border: black 2px solid;
+  display: none;
 }
 
 #startpic {
   width: 1200px;
   height: 600px;
   background-image: url("./images/RicochetTitle.png");
+}
+
+#victor {
+  width: 1200px;
+  height: 600px;
+  background-image: url("./images/VictorWins.png");
+  display: none;
+}
+
+#pierre {
+  width: 1200px;
+  height: 600px;
+  background-image: url("./images/PierreWins.png");
+  display: none;
 }
 
 #score-container {

@@ -9,8 +9,6 @@ function Second(x, y, width, height, secondImage) {
 }
 
 Second.prototype.draw = function() {
-  // ctx.fillStyle = "black";
-  // ctx.fillRect(this.x, this.y, this.width, this.height);
   ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
 };
 

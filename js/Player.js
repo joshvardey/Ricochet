@@ -11,8 +11,6 @@ function Player(x, y, width, height, playerImage) {
 }
 
 Player.prototype.draw = function() {
-  // ctx.fillStyle = "black";
-  // ctx.fillRect(this.x, this.y, this.width, this.height);
   ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   if (this.moon) {
     this.moon.move();
@@ -57,10 +55,3 @@ Player.prototype.midpoint = function() {
 Player.prototype.decreaseHealth = function(e) {
   this.health -= e;
 };
-
-// for (let i = 0; i < this.moonBullets.length; i++) {
-//   this.moonBullets[i].draw();
-//   this.moonBullets[i].move();
-// }
-
-// this.moonBullets.push(new Moon(moonPosition.x, moonPosition.y));
