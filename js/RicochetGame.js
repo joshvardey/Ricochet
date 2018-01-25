@@ -4,16 +4,16 @@ function RicochetGame() {
   var pierre = new Image();
   pierre.src = "./images/PierreGAME.png";
   this.player = {
-    player1: new Player(10, 250, 130, 230, pierre),
-    player2: new Player(1040, 250, 150, 230, victor)
+    player1: new Player(5, 250, 130, 230, pierre),
+    player2: new Player(1035, 250, 170, 230, victor)
   };
   var second1 = new Image();
   second1.src = "./images/Second1alt.png";
   var second2 = new Image();
   second2.src = "./images/Second2alt.png";
   this.second = {
-    second1: new Second(550, 5, 350, 100, second1),
-    second2: new Second(550, 500, 350, 100, second2)
+    second1: new Second(550, 0, 150, 50, second1),
+    second2: new Second(550, 550, 150, 50, second2)
   };
 }
 

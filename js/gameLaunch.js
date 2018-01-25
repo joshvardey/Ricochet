@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  var music = new Audio("./sounds/blessing.mp3");
+  music.play();
   $("#start-button").click(function() {
     $("#canvas").show();
     $("#startpic").hide();

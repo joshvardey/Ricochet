@@ -12,8 +12,6 @@ var moonImage = new Image();
 moonImage.src = "./images/creepymoon.png";
 
 Moon.prototype.draw = function() {
-  // ctx.fillStyle = "black";
-  // ctx.fillRect(this.x, this.y, this.width, this.height);
   ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
 };
 
@@ -22,6 +20,8 @@ Moon.prototype.move = function() {
   this.y += this.y_speed;
   if (this.x + this.x_speed > canvas.width || this.x + this.x_speed < 0) {
     this.x_speed *= -1;
+    var wall = new Audio("./sounds/ricochet2.mp3");
+    wall.play();
   }
 };
 
@@ -35,16 +35,19 @@ Moon.prototype.isColliding = function(object) {
 };
 
 Moon.prototype.collideWithSecond = function(second) {
+  var ping = new Audio("./sounds/ricochet.mp3");
+  ping.play();
   this.y_speed = this.y_speed * -1;
   this.x_speed += Math.sign(this.x_speed) * Math.abs(second.x_speed) / 2;
   this.y += this.y_speed;
 };
 
 Moon.prototype.collideWithPlayer = function(player, moon) {
+  var thud = new Audio("./sounds/swipe.mp3");
+  thud.play();
   player.decreaseHealth(2);
-  console.log(player);
 };
 
 Moon.prototype.offScreen = function(moon) {
-  return this.y < 0 || this.y > 600;
+  return this.y < 25 || this.y > 575;
 };

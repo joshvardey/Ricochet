@@ -30,7 +30,9 @@ Player.prototype.move = function(direction) {
 };
 
 Player.prototype.shoot = function(target) {
+  var shoot = new Audio("./sounds/pop.mp3");
   if (this.moon) return;
+  shoot.play();
   var moonPosition = this.midpoint();
   var angle = Math.atan2(
     target.y + target.height / 2 - moonPosition.y,
