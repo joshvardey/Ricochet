@@ -19,9 +19,11 @@ function gameOver(winner) {
   if (winner === "victor") {
     $("#victor").show();
     $("#canvas").hide();
+    $("#pierre").hide();
   } else if (winner === "pierre") {
     $("#pierre").show();
     $("#canvas").hide();
+    $("#victor").hide();
   }
 }
 
