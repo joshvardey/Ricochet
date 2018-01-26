@@ -9,7 +9,7 @@ function RicochetGame() {
   pierreResting.src = "./images/PierreResting.png";
 
   this.player = {
-    player1: new Player(5, 250, 130, 230, pierreResting, pierreFiring),
+    player1: new Player(3, 250, 130, 230, pierreResting, pierreFiring),
     player2: new Player(1030, 250, 170, 230, victorResting, victorFiring)
   };
   var second1 = new Image();
