@@ -1,11 +1,16 @@
 function RicochetGame() {
-  var victor = new Image();
-  victor.src = "./images/VictorGAME.png";
-  var pierre = new Image();
-  pierre.src = "./images/PierreGAME.png";
+  var victorFiring = new Image();
+  victorFiring.src = "./images/VictorFiring.png";
+  var pierreFiring = new Image();
+  pierreFiring.src = "./images/PierreFiring.png";
+  var victorResting = new Image();
+  victorResting.src = "./images/VictorResting.png";
+  var pierreResting = new Image();
+  pierreResting.src = "./images/PierreResting.png";
+
   this.player = {
-    player1: new Player(5, 250, 130, 230, pierre),
-    player2: new Player(1035, 250, 170, 230, victor)
+    player1: new Player(5, 250, 130, 230, pierreResting, pierreFiring),
+    player2: new Player(1030, 250, 170, 230, victorResting, victorFiring)
   };
   var second1 = new Image();
   second1.src = "./images/Second1alt.png";

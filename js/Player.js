@@ -1,4 +1,4 @@
-function Player(x, y, width, height, playerImage) {
+function Player(x, y, width, height, playerRest, playerShoot) {
   this.x = x;
   this.y = y;
   this.width = width;
@@ -7,11 +7,15 @@ function Player(x, y, width, height, playerImage) {
   this.y_speed = 10;
   this.moon = null;
   this.health = 10;
-  this.image = playerImage;
+  this.image = { rest: playerRest, shoot: playerShoot };
 }
 
 Player.prototype.draw = function() {
-  ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+  if (this.isShooting()) {
+    ctx.drawImage(this.image.shoot, this.x, this.y, this.width, this.height);
+  } else {
+    ctx.drawImage(this.image.rest, this.x, this.y, this.width, this.height);
+  }
   if (this.moon) {
     this.moon.move();
     this.moon.draw();
@@ -27,6 +31,10 @@ Player.prototype.move = function(direction) {
   } else if (this.y + this.height > 600) {
     this.y = 600 - this.height;
   }
+};
+
+Player.prototype.isShooting = function() {
+  return !!this.moon;
 };
 
 Player.prototype.shoot = function(target) {
