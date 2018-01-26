@@ -26,3 +26,5 @@ document.addEventListener("click", function() {
   mixpanel.time_event("Click"); // Start a new chronometer for "Click"
 });
 // End Mixpanel tracking
+
+mixpanel.track("Test");
