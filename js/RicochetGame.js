@@ -72,9 +72,6 @@ RicochetGame.prototype.checkAllCollisions1 = function() {
   } else if (p1.moon.isColliding(p2)) {
     p1.moon.collideWithPlayer(p2, p1.moon);
     p1.moon = null;
-    // } else if (p1.moon.isColliding(p1)) {
-    //   p1.moon.collideWithPlayer(p1, p1.moon);
-    //   p1.moon = null;
   } else if (p1.moon.offScreen()) {
     p1.moon = null;
   }
@@ -92,9 +89,6 @@ RicochetGame.prototype.checkAllCollisions2 = function() {
   } else if (p2.moon.isColliding(p1)) {
     p2.moon.collideWithPlayer(p1, p2.moon);
     p2.moon = null;
-    // } else if (p2.moon.isColliding(p2)) {
-    //   p2.moon.collideWithPlayer(p2, p2.moon);
-    //   p2.moon = null;
   } else if (p2.moon.offScreen()) {
     p2.moon = null;
   }
